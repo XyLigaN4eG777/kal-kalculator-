@@ -1,5 +1,5 @@
-#include <iostream>           // ymnojenie ne rabotaet
-using namespace std;                 // otdixaet
+#include <iostream>           // ymnojenie rabotaet tolko po polnolyniyam
+using namespace std;                 
 
 
 long itc_len(string str) {
