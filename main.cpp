@@ -1,10 +1,10 @@
-#include <iostream>
-using namespace std;
+#include <iostream>           // ymnojenie ne rabotaet
+using namespace std;                 // otdixaet
 
 
 long itc_len(string str) {
     int i = 0;
-    while (str[i] != '\0'){
+    while (str[i] != '\0'){ 
         i += 1;
     }
     return i;
@@ -179,7 +179,7 @@ string coonector(string n1, string n2, string z)
     z2 = n2[0];
     string n11;
     string n21;
-    if(z == "1") // сложение
+    if(z == "1") // Г±Г«Г®Г¦ГҐГ­ГЁГҐ
     {
         if((z1 != "-") && (z2 != "-"))
             return s(n1, n2);
@@ -200,7 +200,7 @@ string coonector(string n1, string n2, string z)
             return "-" + s(n11, n21);
         }
     }
-    else // вычитание
+    else // ГўГ»Г·ГЁГІГ Г­ГЁГҐ
     {
          if((z1 != "-") && (z2 != "-"))
             return v(n1, n2);
