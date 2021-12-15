@@ -1,10 +1,10 @@
-#include <iostream>           // ymnojenie rabotaet tolko po polnolyniyam
-using namespace std;                 
+#include <iostream>
+using namespace std;
 
 
 long itc_len(string str) {
     int i = 0;
-    while (str[i] != '\0'){ 
+    while (str[i] != '\0'){
         i += 1;
     }
     return i;
@@ -19,7 +19,10 @@ string itc_slice_str(string str, int start, int last){
 }
 
 string module(string num){
-    return itc_slice_str(num, 1, itc_len(num));
+    int t;
+    t = itc_len(num);
+    t = t - 1;
+    return itc_slice_str(num, 1, t);
 }
 
 
@@ -138,9 +141,25 @@ string v(string str1, string str2)
 
 
 
-string u(string n1, string n2)
+string u(string n1, string n2, string z)
 {
-    return "gg";
+    string res = n1;
+    if ((n1 == "0") || (n2 == "0"))
+        return "0";
+    else{
+        string b = "1";
+        while (b != n2)
+        {
+            b = s(b, "1");
+            res = s(res, n1);
+
+
+        }
+    }
+
+    return z + res;
+
+
 }
 
 
@@ -148,7 +167,7 @@ string u(string n1, string n2)
 
 int invalid_check(string n1, string n2, string z)
 {
-    int a = 1;
+    int a = 909;
     if (z != "1" && z != "2" && z != "3")
         a = 228;
     long long len1 = itc_len(n1);
@@ -156,14 +175,28 @@ int invalid_check(string n1, string n2, string z)
     for(long long i = 0; i < len1; i++){
         string l;
         l = n1[i];
-        if(l != "2" && l != "1" & l != "3" && l != "4" && l != "5" && l != "6" && l != "7" && l != "8" && l != "9" && l != "0" && l != "-" && l != "+")
+        if (i == 0)
+        {
+            if((l != "2") && (l != "1") && (l != "3") && (l != "4") && (l != "5") && (l != "6") && (l != "7") && (l != "8") && (l != "9") && (l != "0") && (l != "+") && (l != "-"))
             a = 228;
+        }
+        else{
+        if((l != "2") && (l != "1") && (l != "3") && (l != "4") && (l != "5") && (l != "6") && (l != "7") && (l != "8") && (l != "9") && (l != "0"))
+            a = 228;
+        }
     }
     for(long long p = 0; p < len2; p++){
         string k;
         k = n2[p];
-        if(k != "2" && k != "1" && k != "3" && k != "4" && k != "5" && k != "6" && k != "7" && k != "8" && k != "9" && k != "0" && k != "-" && k != "+")
+        if (p == 0)
+        {
+            if((k != "2") && (k != "1") && (k != "3") && (k != "4") && (k != "5") && (k != "6") && (k != "7") && (k != "8") && (k != "9") && (k != "0") && (k != "+") && (k != "-"))
             a = 228;
+        }
+        else{
+        if((k != "2") && (k != "1") && (k != "3") && (k != "4") && (k != "5") && (k != "6") && (k != "7") && (k != "8") && (k != "9") && (k != "0"))
+            a = 228;
+        }
     }
     return a;
 }
@@ -179,7 +212,7 @@ string coonector(string n1, string n2, string z)
     z2 = n2[0];
     string n11;
     string n21;
-    if(z == "1") // ñëîæåíèå
+    if(z == "1")
     {
         if((z1 != "-") && (z2 != "-"))
             return s(n1, n2);
@@ -200,9 +233,9 @@ string coonector(string n1, string n2, string z)
             return "-" + s(n11, n21);
         }
     }
-    else // âû÷èòàíèå
+    else
     {
-         if((z1 != "-") && (z2 != "-"))
+        if((z1 != "-") && (z2 != "-"))
             return v(n1, n2);
         if((z1 == "-") && (z2 == "-"))
         {
@@ -225,11 +258,33 @@ string coonector(string n1, string n2, string z)
 
 }
 
+string coonector2(string n1, string n2)
+{
+    string z1;
+    string z2;
+    z1 = n1[0];
+    z2 = n2[0];
+    string p = "";
+    if ((z1 == "-") && (z2 == "-"))
+        return u(module(n1), module(n2), p);
+    if ((z1 != "-") && (z2 != "-"))
+        return u(n1, n2, p);
+    if ((z1 != "-") && (z2 == "-"))
+    {
+        p = "-";
+        return u(n1, module(n2), p);
+    }
+    if ((z1 == "-") && (z2 != "-"))
+    {
+        p = "-";
+        return u(module(n1), n2, p);
+    }
 
-
+}
 
 int main()
 {
+    while (true){
     string n1, n2;
     string z;
     cout << "Enter the first number" << endl;
@@ -241,7 +296,12 @@ int main()
     int g = invalid_check(n1, n2, z);
     if (g == 228)
         cout << "invalid"<< endl;
-    if((z == "1") || (z == "2"))
-        cout << coonector(n1, n2, z);
+    else{
+        if((z == "1") || (z == "2"))
+        cout << coonector(n1, n2, z) << endl;
+    if(z == "3")
+        cout << coonector2(n1, n2) << endl;
+    }
+    }
     return 0;
 }
